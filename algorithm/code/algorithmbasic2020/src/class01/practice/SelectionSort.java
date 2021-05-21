@@ -17,7 +17,7 @@ public class SelectionSort {
         for(int i = 0; i < testTime; i++){
             int[] arr = generateRandomArray(maxSize,maxValue);
             int[] arr1 = copyArray(arr);
-            selectSort(arr);
+            selectionSort1(arr);
             Arrays.sort(arr1);
             if(!isEqual(arr,arr1)){
                 succeed = false;
@@ -38,13 +38,11 @@ public class SelectionSort {
         }
         for (int i = 0; i < arr.length - 1; i++){
             int minIndex = i;
-            int maxIndex = arr.length - 1 - i;
             for (int j = i + 1;j < arr.length; j++){
                 minIndex = arr[minIndex] < arr[j] ? minIndex : j;
-                maxIndex = arr[maxIndex] > arr[j] ? maxIndex : j;
+
             }
             swap(arr,i,minIndex);
-            swap(arr,arr.length - 1 - i,maxIndex);
         }
     }
 
@@ -105,6 +103,22 @@ public class SelectionSort {
             res[i] = arr[i];
         }
         return res;
+    }
+
+    public static void selectionSort1(int[] arr){
+        //1 ~ n-1
+        //2 ~ n-1
+        for (int i = 1; i < (arr.length - 1) / 2;i++){
+            int minIndex = i;
+            int maxIndex = arr.length - 1 - i;
+            for(int j = i + 1; j < arr.length / 2; j++){
+                minIndex = arr[minIndex] < arr[j] ? minIndex : j;
+                maxIndex = arr[maxIndex] > arr[j] ? maxIndex : j;
+            }
+            swap(arr,minIndex,i);
+            swap(arr,maxIndex, arr.length - 1 - i);
+        }
+
     }
 
 
